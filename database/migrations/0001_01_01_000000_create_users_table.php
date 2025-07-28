@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
 
 return new class extends Migration
 {
@@ -20,6 +21,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Artisan::call('db:seed', array('--class' => 'UserTableSeeder'));
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
